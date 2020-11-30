@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  role_name: ssh_tor
+  author: Bassinator
+  description: run ssh over tor as onion service
+  company: einfach IT
+
+  license: GNU GPLv3
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: debian
+      versions:
+        - 10
+
+  galaxy_tags: [raspbery, noobs, reset, raspbian]
+
+dependencies: []

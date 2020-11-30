@@ -1,0 +1,50 @@
+---
+
+- name: install software packages
+  apt:
+    name:
+      - tor
+      - netcat-openbsd
+    update_cache: true
+    state: present
+  become: true
+
+- name: create tor hidden service dir
+  file:
+    path: "/var/lib/tor/ssh"
+    mode: '0700'
+    state: directory
+    owner: 'debian-tor'
+  notify:
+  - restart tor
+
+- name: configure ssh hidden service
+  blockinfile:
+    path: "/etc/tor/torrc"
+    mode: '0644' 
+    block: |
+      HiddenServiceDir /var/lib/tor/ssh/
+      HiddenServicePort 22 127.0.0.1:22
+
+- name: create .ssh config dir
+  file:
+    path: "/home/{{ installation_os_user }}/.ssh"
+    mode: '0700'
+    owner: "{{ installation_os_user }}"
+    state: directory
+
+
+- name: configure ssh client proxy command
+  blockinfile:
+    path: "/home/{{ installation_os_user }}/.ssh/config"
+    mode: '0644'
+    owner: "{{ installation_os_user }}"
+    create: true
+    insertbefore: BOF
+    block: |
+      # Wildcard to match all tor hosts
+      Host *.onion *-tor
+      ProxyCommand nc -X 5 -x 127.0.0.1:9050 %h %p
+      CheckHostIP  no
+      Compression  yes
+      Protocol     2
