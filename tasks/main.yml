@@ -21,7 +21,7 @@
 - name: configure ssh hidden service
   blockinfile:
     path: "/etc/tor/torrc"
-    mode: '0644' 
+    mode: '0644'
     block: |
       HiddenServiceDir /var/lib/tor/ssh/
       HiddenServicePort 22 127.0.0.1:22
