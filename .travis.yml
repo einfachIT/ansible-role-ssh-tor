@@ -15,7 +15,7 @@ install:
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
   - cd ../
-  - mv ansible-role-net-sync bassinator.$ROLE_NAME
+  - mv ansible-role-ssh-tor bassinator.$ROLE_NAME
   - cd bassinator.$ROLE_NAME
 
 script:
