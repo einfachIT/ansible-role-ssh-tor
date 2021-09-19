@@ -3,14 +3,14 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint .
-  ansible-lint -x 503
-  flake8
+#lint: |
+#  set -e
+#  yamllint .
+#  ansible-lint -x 503
+#  flake8
 platforms:
-  - name: debian10
-    image: debian:buster
+  - name: raspbian
+    image: balenalib/raspberrypi4-64-debian
 provisioner:
   name: ansible
 scenario:
