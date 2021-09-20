@@ -24,4 +24,4 @@ jobs:
       - name: Prepare environment
         run: |
           source setup.sh
-          molecule test -s delegate
+          molecule debug -vvv test -s delegate
