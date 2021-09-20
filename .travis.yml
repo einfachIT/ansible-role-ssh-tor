@@ -10,13 +10,14 @@ env:
 
 install:
   # Install test dependencies.
-  - pip install molecule yamllint ansible-lint flake8 testinfra docker molecule-docker
+  - ansible molecule molecule-docker yamllint docker molecule-docker
+  # - pip install molecule yamllint ansible-lint flake8 testinfra docker molecule-docker
 
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
   - cd ../
-  - mv ansible-role-ssh-tor bassinator.$ROLE_NAME
-  - cd bassinator.$ROLE_NAME
+  - mv ansible-role-ssh-tor bassinator.ssh_tor
+  - cd bassinator.ssh_tor
 
 script:
   # Run tests.
