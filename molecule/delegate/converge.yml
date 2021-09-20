@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include bassinator.ssh_tor"
+      include_role:
+        name: "bassinator.ssh_tor"

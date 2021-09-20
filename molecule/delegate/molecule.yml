@@ -1,0 +1,13 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+platforms:
+  - name: raspbian
+provisioner:
+  name: ansible
+#  options:
+#    connection: docker
+verifier:
+  name: ansible
