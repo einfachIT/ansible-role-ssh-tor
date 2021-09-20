@@ -10,7 +10,7 @@ env:
 
 install:
   # Install test dependencies.
-  - ansible molecule molecule-docker yamllint docker molecule-docker
+  - pip install ansible molecule molecule-docker yamllint docker molecule-docker
   # - pip install molecule yamllint ansible-lint flake8 testinfra docker molecule-docker
 
 before_script:
