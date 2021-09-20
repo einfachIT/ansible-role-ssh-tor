@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: umacos-lates
+    runs-on: umacos-latest
 
     steps:
       - uses: actions/checkout@v2
