@@ -29,4 +29,4 @@ jobs:
           molecule --version
           docker --version
           pip3 show molecule-docker
-          sudo molecule --debug -vvv test -s delegate
+          molecule --debug -vvv test -s delegate

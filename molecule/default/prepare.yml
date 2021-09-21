@@ -1,6 +1,7 @@
 ---
 - name: prepare
   hosts: all
+  become: true
   tasks:
     - name: add user group
       user:
