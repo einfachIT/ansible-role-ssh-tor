@@ -1,4 +1,4 @@
-![molecule_test](https://github.com/github/docs/actions/workflows/blank.yml/badge.svg)
+![molecule_test](https://github.com/Bassinator/ansible-role-ssh-tor/actions/workflows/blank.yml/badge.svg)
 # ansible-role-ssh-tor
 
 
