@@ -14,13 +14,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
-      - name: debug info
-        run: |
-          ansible --version
-          molecule --version
-          docker --version
-          pip3 show molecule-docker
 
       - name: Prepare environment
         run: |
@@ -30,4 +23,8 @@ jobs:
       - name: Run tests
         run: |
           source setup.sh
+          ansible --version
+          molecule --version
+          docker --version
+          pip3 show molecule-docker
           molecule --debug -vvv test -s delegate
