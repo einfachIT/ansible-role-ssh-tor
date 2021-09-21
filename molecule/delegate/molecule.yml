@@ -7,7 +7,8 @@ platforms:
   - name: raspbian
 provisioner:
   name: ansible
-#  options:
-#    connection: docker
+  config_options:
+    defaults:
+      remote_tmp: /tmp/.ansible
 verifier:
   name: ansible
