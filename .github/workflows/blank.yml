@@ -24,7 +24,7 @@ jobs:
   
       - name: Run tests
         run: |
-          source setup.sh
+          source source.me
           ansible --version
           molecule --version
           docker --version
