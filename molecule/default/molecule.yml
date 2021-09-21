@@ -2,21 +2,13 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
-#lint: |
-#  set -e
-#  yamllint .
-#  ansible-lint -x 503
-#  flake8
+  name: delegated
 platforms:
   - name: raspbian
-    image: balenalib/raspberrypi4-64-debian
 provisioner:
   name: ansible
-scenario:
-  name: default
-  converge_sequence:
-    - prepare
-    - converge
+  config_options:
+    defaults:
+      remote_tmp: /tmp/.ansible
 verifier:
-  name: testinfra
+  name: ansible
