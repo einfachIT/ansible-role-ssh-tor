@@ -17,9 +17,9 @@ jobs:
       
       - name: debug info
         run: |
-          ansible --info
-          molecule --info
-          docker --info
+          ansible --version
+          molecule --version
+          docker --version
           pip3 show molecule-docker
 
       - name: Prepare environment
