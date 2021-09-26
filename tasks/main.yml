@@ -5,9 +5,16 @@
     name:
       - tor
       - netcat-openbsd
+#      - torsocks
+      - openssh-server
     update_cache: true
     state: present
   become: true
+
+- name: start ssh service
+  service:
+    name: ssh
+    state: started
 
 - name: create tor hidden service dir
   file:
@@ -28,17 +35,17 @@
 
 - name: create .ssh config dir
   file:
-    path: "/home/{{ installation_os_user }}/.ssh"
+    path: "~/.ssh"
     mode: '0700'
-    owner: "{{ installation_os_user }}"
     state: directory
+  become: yes
+  become_user: "{{ installation_os_user }}"
 
 
 - name: configure ssh client proxy command
   blockinfile:
-    path: "/home/{{ installation_os_user }}/.ssh/config"
+    path: "~/.ssh/config"
     mode: '0644'
-    owner: "{{ installation_os_user }}"
     create: true
     insertbefore: BOF
     block: |
