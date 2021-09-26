@@ -2,7 +2,7 @@
 
 galaxy_info:
   role_name: ssh_tor
-  namespace: einfachIT
+  namespace: einfachit
   author: bassinator
   description: run ssh over tor as onion service
   company: einfach IT
