@@ -29,7 +29,8 @@ jobs:
           molecule --version
           docker --version
           pip3 show molecule-docker
-          molecule test -s github
+          export SYNC_SERVER_IMAGE="balenalib/amd64-debian-python"
+          molecule test
           
       - name: galaxy
         uses: robertdebock/galaxy-action@1.1.0
