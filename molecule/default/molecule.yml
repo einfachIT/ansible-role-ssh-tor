@@ -1,7 +1,6 @@
 ---
 dependency:
-  name: shell
-  command: "ansible-galaxy role install ."
+  name: galaxy
 driver:
   name: delegated
 platforms:
