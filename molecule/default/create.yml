@@ -9,7 +9,7 @@
     - name: Create a container
       community.docker.docker_container:
         name: raspbian
-        image: balenalib/raspberrypi4-64-debian-python
+        image: {{ image }}
         command: sleep infinity
       register: docker
 
