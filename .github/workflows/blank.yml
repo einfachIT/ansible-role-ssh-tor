@@ -25,14 +25,5 @@ jobs:
       - name: Run tests
         run: |
           source source.me
-          ansible --version
-          molecule --version
-          docker --version
-          pip3 show molecule-docker
           export SYNC_SERVER_IMAGE="balenalib/amd64-debian-python"
           molecule test
-          
-      - name: galaxy
-        uses: robertdebock/galaxy-action@1.1.0
-        with:
-          galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
