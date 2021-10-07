@@ -9,7 +9,7 @@
     - name: Create a container
       community.docker.docker_container:
         name: raspbian
-        image: {{ image }}
+        image: "{{ image }}"
         command: sleep infinity
       register: docker
 
