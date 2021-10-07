@@ -9,7 +9,7 @@
     - name: Create a container
       community.docker.docker_container:
         name: raspbian
-        image: "{{ molecule_yml.platforms.image }}"
+        image: "{{ molecule_yml.platforms[0].image }}"
         command: sleep infinity
       register: docker
 
