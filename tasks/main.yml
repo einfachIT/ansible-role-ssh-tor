@@ -25,6 +25,12 @@
   notify:
   - restart tor
 
+- name: write hidden service secret
+  ansible.builtin.copy:
+    content: "{{ onion_hidden_service_private_key_b64 | b64decode }}"
+    dest: "/var/lib/tor/ssh/hs_ed25519_secret_key"
+  when: onion_hidden_service_private_key_b64
+
 - name: configure ssh hidden service
   blockinfile:
     path: "/etc/tor/torrc"
@@ -32,6 +38,8 @@
     block: |
       HiddenServiceDir /var/lib/tor/ssh/
       HiddenServicePort 22 127.0.0.1:22
+  notify:
+  - restart tor 
 
 - name: create .ssh config dir
   file:
