@@ -14,7 +14,7 @@ galaxy_info:
   platforms:
     - name: debian
       versions:
-      - buster
+        - buster
 
   galaxy_tags: [raspbery, noobs, reset, raspbian]
 

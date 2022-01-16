@@ -22,15 +22,16 @@
     state: directory
     owner: 'debian-tor'
   notify:
-  - restart tor
+    - restart tor
 
 - name: write hidden service secret
   ansible.builtin.copy:
     content: "{{ onion_hidden_service_private_key_b64 | b64decode }}"
     dest: "/var/lib/tor/ssh/hs_ed25519_secret_key"
+    mode: '0644'
   when: onion_hidden_service_private_key_b64
   notify:
-  - restart tor
+    - restart tor
 
 - name: configure ssh hidden service
   blockinfile:
@@ -40,14 +41,14 @@
       HiddenServiceDir /var/lib/tor/ssh/
       HiddenServicePort 2222 127.0.0.1:22
   notify:
-  - restart tor 
+    - restart tor
 
 - name: create .ssh config dir
   file:
     path: "~/.ssh"
     mode: '0700'
     state: directory
-  become: yes
+  become: true
   become_user: "{{ installation_os_user }}"
 
 
@@ -64,7 +65,7 @@
       CheckHostIP  no
       Compression  yes
       Protocol     2
-  become: yes
+  become: true
   become_user: "{{ installation_os_user }}"
 
 - name: allow password authentication
