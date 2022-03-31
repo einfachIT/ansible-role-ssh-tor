@@ -1,7 +1,7 @@
 ---
 
 - name: install software packages
-  apt:
+  ansible.builtin.apt:
     name:
       - tor
       - netcat-openbsd
@@ -11,12 +11,12 @@
   become: true
 
 - name: start sshd service
-  service:
+  ansible.builtin.service:
     name: ssh
     state: started
 
 - name: create tor hidden service dir
-  file:
+  ansible.builtin.file:
     path: "/var/lib/tor/ssh"
     mode: '0700'
     state: directory
@@ -34,7 +34,7 @@
     - restart tor
 
 - name: configure ssh hidden service
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: "/etc/tor/torrc"
     mode: '0644'
     block: |
@@ -44,7 +44,7 @@
     - restart tor
 
 - name: create .ssh config dir
-  file:
+  ansible.builtin.file:
     path: "~/.ssh"
     mode: '0700'
     state: directory
@@ -54,7 +54,7 @@
 
 
 - name: configure ssh client proxy command
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: "~/.ssh/config"
     mode: '0644'
     create: true

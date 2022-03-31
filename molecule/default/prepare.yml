@@ -3,10 +3,10 @@
   hosts: all
   tasks:
     - name: add user group
-      user:
+      ansible.builtin.user:
         name: 'pi'
         state: present
     - name: add user
-      user:
+      ansible.builtin.user:
         name: 'pi'
         group: 'pi'
