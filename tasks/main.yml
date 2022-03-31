@@ -48,8 +48,9 @@
     path: "~/.ssh"
     mode: '0700'
     state: directory
+    owner: "{{ installation_os_user }}"
+    group: "{{ installation_os_group }}"
   become: true
-  become_user: "{{ installation_os_user }}"
 
 
 - name: configure ssh client proxy command
@@ -66,7 +67,6 @@
       Compression  yes
       Protocol     2
   become: true
-  become_user: "{{ installation_os_user }}"
 
 - name: allow password authentication
   ansible.builtin.lineinfile:
