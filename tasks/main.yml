@@ -45,19 +45,19 @@
 
 - name: create .ssh config dir
   ansible.builtin.file:
-    path: "~/.ssh"
+    path: "/home/{{ installation_os_user }}/.ssh"
     mode: '0700'
     state: directory
     owner: "{{ installation_os_user }}"
     group: "{{ installation_os_group }}"
-  become: true
-
 
 - name: configure ssh client proxy command
   ansible.builtin.blockinfile:
-    path: "~/.ssh/config"
+    path: "/home/{{ installation_os_user }}/.ssh/config"
     mode: '0644'
     create: true
+    owner: "{{ installation_os_user }}"
+    group: "{{ installation_os_group }}"
     insertbefore: BOF
     block: |
       # Wildcard to match all tor hosts
@@ -66,7 +66,6 @@
       CheckHostIP  no
       Compression  yes
       Protocol     2
-  become: true
 
 - name: allow password authentication
   ansible.builtin.lineinfile:
