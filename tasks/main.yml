@@ -29,6 +29,8 @@
     content: "{{ onion_hidden_service_private_key_b64 | b64decode }}"
     dest: "/var/lib/tor/ssh/hs_ed25519_secret_key"
     mode: '0644'
+    owner: debian-tor
+    group: debian-tor
   when: onion_hidden_service_private_key_b64
   notify:
     - restart tor
