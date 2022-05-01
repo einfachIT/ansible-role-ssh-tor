@@ -3,6 +3,21 @@
   hosts: all
   tasks:
 
+  - name: get infos about running services
+    ansible.builtin.service:
+      name: "{{ item }}"
+      state: started
+    check_mode: true
+    register: services
+    loop:
+      - ssh
+      - tor
+
+  - name: Assert expected services running
+    ansible.builtin.assert:
+      that: item.changed == false
+    loop: "{{ services.results }}"
+
   - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
     community.crypto.openssh_keypair:
       path: "/home/pi/.ssh/id_ssh_rsa"
